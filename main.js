@@ -9,7 +9,7 @@ function createWindow() {
       nodeIntegration: false,
       contextIsolation: true,
     },
-    backgroundColor: '#0a0a0a',
+    backgroundColor: '#ffffff',
   });
 
   // Load the index.html from dist folder
