@@ -22,6 +22,7 @@
   "devDependencies": {
     "@electron-toolkit/preload": "^3.0.2",
     "@electron-toolkit/utils": "^4.0.0",
+    "@tailwindcss/postcss7-compat": "^2.2.17",
     "@types/react": "^19.1.7",
     "@types/react-dom": "^19.1.6",
     "@vitejs/plugin-react": "^4.5.2",
