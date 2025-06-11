@@ -46,7 +46,7 @@ const ChatInterface: React.FC<ChatInterfaceProps> = ({ onClearMessages }) => {
 
   const handleSubmit = (e: React.FormEvent): void => {
     e.preventDefault();
-    if (!inputText.trim()) return;
+    if (!inputText.trim() || isLoading) return;
 
     const messageText = inputText;
     setInputText(''); // Clear immediately
@@ -135,7 +135,6 @@ const ChatInterface: React.FC<ChatInterfaceProps> = ({ onClearMessages }) => {
                   placeholder="Send a message..."
                   className="w-full p-4 pr-12 rounded-lg shadow-lg focus:outline-none bg-white resize-none overflow-hidden"
                   rows={1}
-                  disabled={isLoading}
                   style={{ minHeight: '56px', height: 'auto' }}
                 />
                 <button
@@ -177,8 +176,8 @@ const ChatInterface: React.FC<ChatInterfaceProps> = ({ onClearMessages }) => {
                     animationDelay: index < 2 ? `${index * 100}ms` : '0ms'
                   }}
                 >
-                  <div className={`${message.role === 'user' ? 'max-w-[70%]' : 'w-full'}`}>
-                    <div className={`p-4 rounded-lg ${
+                  <div className={`${message.role === 'user' ? 'max-w-[70%]' : 'max-w-[70%]'}`}>
+                    <div className={`p-4 rounded-lg inline-block ${
                       message.role === 'user' ? 'bg-blue-500 text-white ml-auto' : 'bg-gray-100'
                     }`}>
                       {message.role === 'assistant' && (
@@ -199,16 +198,20 @@ const ChatInterface: React.FC<ChatInterfaceProps> = ({ onClearMessages }) => {
                 </div>
               ))}
               {isLoading && (
-                <div className="mb-4 p-4 bg-gray-100">
-                  <div className="flex items-start space-x-3">
-                    <div className="w-8 h-8 rounded-full bg-green-600 flex items-center justify-center">
-                      <div className="animate-pulse text-white text-sm font-semibold">A</div>
-                    </div>
-                    <div className="flex-1">
-                      <div className="flex space-x-2">
-                        <div className="w-2 h-2 bg-gray-600 rounded-full animate-bounce" style={{ animationDelay: '0ms' }}></div>
-                        <div className="w-2 h-2 bg-gray-600 rounded-full animate-bounce" style={{ animationDelay: '150ms' }}></div>
-                        <div className="w-2 h-2 bg-gray-600 rounded-full animate-bounce" style={{ animationDelay: '300ms' }}></div>
+                <div className="mb-4">
+                  <div className="max-w-[70%]">
+                    <div className="p-4 bg-gray-100 rounded-lg inline-block">
+                      <div className="flex items-start space-x-3">
+                        <div className="w-8 h-8 rounded-full bg-green-600 flex items-center justify-center">
+                          <div className="animate-pulse text-white text-sm font-semibold">A</div>
+                        </div>
+                        <div className="flex-1">
+                          <div className="flex space-x-2">
+                            <div className="w-2 h-2 bg-gray-600 rounded-full animate-bounce" style={{ animationDelay: '0ms' }}></div>
+                            <div className="w-2 h-2 bg-gray-600 rounded-full animate-bounce" style={{ animationDelay: '150ms' }}></div>
+                            <div className="w-2 h-2 bg-gray-600 rounded-full animate-bounce" style={{ animationDelay: '300ms' }}></div>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -230,7 +233,6 @@ const ChatInterface: React.FC<ChatInterfaceProps> = ({ onClearMessages }) => {
                   placeholder="Send a message..."
                   className="w-full p-4 pr-12 rounded-lg shadow-lg focus:outline-none bg-white resize-none overflow-hidden"
                   rows={1}
-                  disabled={isLoading}
                   style={{ minHeight: '56px', height: 'auto' }}
                 />
                 <button
